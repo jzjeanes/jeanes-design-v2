@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>{{ site.website_title }}</title>
+
+		<meta name="ROBOTS" content="INDEX,FOLLOW">
+		<meta name="description" content="{{ site.meta_description }}">
+		<meta name="keywords" content="{{ site.meta_tags }}">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		
+		{{{ site.meta_head }}}
+
+		<link href="{{ site.favicon_url }}" rel="shortcut icon">
+		<link href="{{ site.rss_url }}" rel="alternate" type="application/rss+xml" title="{{ site.website_title }} feed">
+
+		{{{ cargo_package }}}
+		
+
+		<script src="/_jsapps/_libs/cargo_plugins/elementResizer.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1'">
+
+		
+			
+	</head>
+	<body data-bodyview="{{ route.body_view }}">
+
+		{{{ site.custom_html }}}
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+		{{! The global loading indicator }}
+		<img class="loading" src="/_gfx/loadingAnim.gif" data-loading="page">
+
+		{{! Navigation }}
+		<div class="site_header">
+
+			{{#if site.header_url}}
+			<div class="header_image">
+
+				{{#if_option "header_link_to_index"}}
+					{{#if_any route.search route.is_set}}
+						<a href="{{ site.direct_link }}">
+					{{else}}
+						<a href="{{ site.direct_link }}" rel="show_index">
+					{{/if_any}}
+				{{/if_option}}
+					<img src="{{ site.header_url }}" {{#if display_options.header_2x}} height="{{ site.header_height_2x }}" width="{{ site.header_width_2x }}" {{else}} height="{{ site.header_height }}" width="{{ site.header_width }}" {{/if}} />
+				{{#if_option "header_link_to_index"}}
+					</a>
+				{{/if_option}}
+
+			</div>
+			{{/if}}
+
+			<div class="header_text">
+				<a href="{{ site.direct_link }}" {{#if_any route.search route.is_set}}{{else}}rel="show_index"{{/if_any}}>
+					{{{ site.header_text }}}
+				</a>
+			</div>
+
+			<div class="navigation" data-view="Navigation" data-set="Navigation">
+
+				<span id="autopagination_wrapper" data-view="Navigation" data-set="Navigation">
+				{{#navigation}}
+					<div id="menu_{{ id }}" class="{{ type }}_link" data-type="{{ type }}" data-id="{{ id }}">
+						<a id="p{{ id }}" {{#if link_url }}target="{{ link_target }}" href="{{ link_url }}"{{else}} href="{{ url }}" {{#unless_all is_set route.search}}rel="history"{{/unless_all}}{{/if}}>
+							{{ title_no_html }}
+						</a>
+					</div>
+				{{/navigation}}
+				</span>
+
+				{{#if_option "following_link_in_nav"}}
+				<div class="following">
+					<a href="{{ site.following_url }}">Following</a> ({{ site.following_count }})
+				</div>
+				{{/if_option}}
+
+			</div>
+
+			{{#if site.filter}}
+				<div class="filter">Filter: {{ site.filter }}</b> <a class="view_all" href="{{ site.direct_link }}">view all</a></div>
+			{{/if}}
+
+		</div>
+
+{{#route index "/"}}
+
+		<div class="container">
+			
+
+			<div id="project" class="project clear" data-view="ProjectDetail" data-set="Project">
+				<div id="back_to_index" class="smalltext">&#10554; <a href="/">Index</a></div>
+
+				<div class="entry" data-id="{{ project.id }}" data-resize-parent>
+
+					<div class="project_header">
+
+						{{#if_option "title_in_project"}}
+							{{#if project.show_title }}
+								<div class="project_title">
+									<h2>{{{ project.title }}}</h2>
+								</div>
+							{{/if}}
+						{{/if_option}}
+
+						
+					</div>
+
+					<div class="project_content" data-elementresizer>
+						{{print "project.content"}}
+					</div>
+
+					<directlink link="{{ project.direct_link }}" id="dl_{{ project.id }}"></directlink>
+
+				</div>
+
+			</div>
+
+		</div>
+		<div id"index" class="thumbnails clear" data-view="Thumbnail" data-set="Projects" data-autopaginate="true">
+			
+
+			
+		
+			
+			<!-- All the important stuff that sits right at the top of my website-->
+			<div class="about">
+		
+
+
+
+
+
+<p>
+						    <div class="hover_img">
+						    <a>
+							   <script type="text/javascript">
+									day = new Date()
+									hr = day.getHours()
+									hr1 = hr - 12
+									if (hr < "6") {
+										document.write(" Hey. You're up early. ")
+									}else if (hr < "12"){
+										document.write(" Hi. ")
+									}else if (hr < "13") {
+										document.write(" Howdy. ")
+									}else if (hr < "17") {
+										document.write(" Heya. ")
+									}else if (hr < "22") {
+										document.write(" Hello. ")
+									}else if (hr >= "22") {
+										document.write(" Hey. Late night. ")
+									}
+									</script>
+	
+		<div class="what_is_up">
+			<form action="https://docs.google.com/forms/d/e/1FAIpQLSeWcDLu15pbT09H4nbCh3uHuW2bfMaTgjI3SnvVi-u5AMlJpQ/formResponse?embedded=true" method="POST" id="ss-form" target="_self" onsubmit="">
+				<div class="inset">
+					<label class="ss-q-item-label" for="entry_2036050999">Tell me what's up</label>
+					<input type="text" name="entry.2036050999" value="" class="ss-q-short" id="entry_2036050999 my-name" dir="auto" aria-label="What is up? Please tell me what is up below: " title="">
+					<input type="submit" name="submit" value="Send it" id="ss-submit" class="jfk-button jfk-button-action "><p id="nice" style="display:none">Message sent ✅</p>
+				</div>
+			</form>
+				<script type="text/javascript">
+					var button = document.getElementById('ss-submit'); // Assumes element with id='button'
+						button.onclick = function () {
+						var div = document.getElementById('nice');
+						if (div.style.display !== 'none') {
+							div.style.display = 'none';
+    					}
+						else {
+						div.style.display = 'block';
+    					}
+    					
+					};
+				</script>
+				<script type="text/javascript">
+					var frm = $('#ss-form');
+					frm.submit(function (ev) {
+					$.ajax({
+					type: frm.attr('method'),
+					url: frm.attr('action'),
+					data: frm.serialize(),
+					success: function (data) {
+	                alert('ok');
+					}
+	        		});
+	
+					ev.preventDefault();
+	    			});
+				</script>
+  		</div>
+  	</a>
+  </div>
+				</p>
+				<p>	
+					I'm <span class="hover_img">
+						<a>Jacob Zinman-Jeanes<span><img src="{{#asset}}me.png{{/asset}}" alt="me" height="296px" /></span></a></span>; 
+						an 
+						<span class="hover_img">
+						<a>interaction<span><img src="{{#asset}}what-is-ixd.jpg{{/asset}}" alt="ixd" height="200px" /></span></a></span> 
+						and 
+						<span class="hover_img">
+						<a>graphic<span><img src="{{#asset}}what-is-design.png{{/asset}}" alt="design" height="205px" /></span></a></span>
+						 designer, 
+						 <span class="hover_img">
+						 <a>illustrator<span><img src="{{#asset}}what-is-illustration.jpg{{/asset}}" alt="drawing" height="261px" /></span></a></span>
+						  and 
+						<span class="hover_img">
+						<a>musician<span><img src="{{#asset}}what-is-music.gif{{/asset}}" alt="music" height="121px" /></span></a></span>
+						 currently living in Melbourne, Australia.
+				</p>
+				<p>My work explores the intersection of 
+						<span class="hover_img">
+						<a>clarity<span><img src="{{#asset}}what-is-clarity.png{{/asset}}" alt="clarity" height="100px" /></span></a></span>
+						 and 
+						 <span class="hover_img">
+						<a>delight<span><img src="{{#asset}}what-is-delight.png{{/asset}}" alt="clarity" height="335px" /></span></a></span>.
+				</p>
+				<p>
+					If you have an interesting project you think we should work together on or if you'd just like to say hello&#9995; you can email me at 
+					<a href="mailto:jacob@jeanes.co">jacob@jeanes.co</a>.
+				</p>
+				
+				
+			</div>
+			
+			<div class="fine_details">
+				
+			<div id="left">
+				<p>
+				Life: <a href="https://www.instagram.com/jzjeanes/">Instagram</a>
+				<br>
+				One-liners: <a href="http://twitter.com/jzjeanes">Twitter</a>
+				<br>
+				Taste: <a href="http://my.other.jeanes.co">Tumblr</a>
+				<br>
+				Music: <a href="https://jeanes.bandcamp.com/">Bandcamp</a>
+				</p>
+    		</div>
+			<div id="right">
+				<p>
+				Right now: 
+				<br>
+				Design Director at <a href="http://today.design">Today</a>, a design company in Melbourne.
+				</p>
+			</div>
+			<div class="clear"></div>
+			</div>
+			
+			
+				{{#projects}}
+			
+				<div class="thumbnail" id="item_{{ id }}" name="{{ id }}" data-setid="{{ set_id }}" data-setname="{{ set_name }}">
+						<div class="loading" data-loading="{{ id }}">
+							<img src="/_gfx/loadingAnim.gif">
+						</div>
+
+						<a href="{{ url }}" data-id="{{ id }}" rel="history">
+							
+							{{#if_option "title_in_thumb"}}
+								<div class="thumb_title">
+									<span>{{{ title }}}</span>
+								</div>
+							{{/if_option}}
+
+							<div class="thumb_image" name="">
+								<img src="{{print "thumb_url"}}" width="{{ thumb_width }}" height="{{ thumb_height }}" {{#if thumb_url_2x}} data-hi-res={{ thumb_url_2x }} {{/if}}>
+							</div>
+
+							
+
+						</a>
+
+						{{#if_option "tags_in_thumb"}}
+							<div class="thumb_tags">
+								{{#tags}}
+								<span class="thumb_tag"><a href="{{ filter_link }}">{{ tag }}</a></span>
+								{{/tags}}
+							</div>
+						{{/if_option}}
+
+						{{#if_option "excerpt_in_thumb"}}
+							<div class="thumb_excerpt">
+								<span>{{ excerpt }}</span>
+							</div>
+						{{/if_option}}
+				</div>
+			{{/projects}}
+
+<!--
+			<div class="smalltext"><strong>Some more:</strong><br>
+					<a href="http://www.studiothick.com/case-studies/reimagining-government-transactions/">Victorian Government Customer Service Centre</a>: Design
+					<br>
+					<a href="http://www.studiothick.com/case-studies/keepcup-reuse-revolution/">KeepCup Reuse Revolution</a>: Illustration, design
+					<br>
+					<a href="http://www.studiothick.com/case-studies/landcare/">Landcare Victoria</a>: Creative direction (design by <a href="http://hannahmitchell.com.au/">Hannah Mitchell</a>)
+			</div>
+-->
+	</div>
+	</div>
+	
+
+		<div class="show_index">
+			<a href="{{ site.direct_link }}">View all</a>
+		</div>
+			
+		<div id="autopaginate_loader" class="moreload" data-view="Autopaginate" data-preload_distance="1500">
+			{{>loading_animation}}
+		</div>
+
+{{/route}}
+
+
+
+
+{{#route search "/search"}}
+
+		<div id="search" class="search" data-view="Search">
+			<div action="#" class="search_form_results" id="search_form_results">
+				<div class="search_header">Search results for </div>
+				<input type="text" value="{{ search.term }}" id="results_search_term">
+			</div>
+			{{#search}}
+				{{#projects}}
+				<div class="result">
+					<div class="search_thumb">
+						<a href="{{ direct_link }}">
+							<img border="0" align="left" src="{{ thumb_url }}">
+						</a>
+					</div>
+					<div class="search_text">
+						<div class="search_title">
+							<a href="{{ direct_link }}">{{ title }}</a>
+						</div>
+						<div class="search_body">
+							{{ excerpt }}
+						</div>
+						<div class="search_tags">
+							{{#tags}}
+								<span class="thumb_tag"><a href="{{ filter_link }}">{{ tag }}</a></span>
+							{{/tags}}
+						</div>
+					</div>
+				</div>
+				{{/projects}}
+			{{/search}}
+		</div>
+
+{{/route}}
+		<div id="colophon">
+			
+		<p class="marquee"><bold>Recognition:</bold> 2016 AGDA Design Awards: <a href="http://crikey.com.au">crikey.com.au</a> • 2016 Good Design Awards: <a href="http://artsaccess.com.au">artsaccess.com.au</a> • 2016 Good Design Awards: <a href="http://smartraveller.gov.au">smartraveller.gov.au</a> • 2016 Webby Awards Nominee: <a href="http://smartraveller.gov.au">smartraveller.gov.au</a> • 2015 Good Design Awards: <a href="http://reusehq.keepcup.com/">KeepCup Reuse HQ</a> </span><span><bold>Recognition:</bold> 2016 AGDA Design Awards: <a href="http://crikey.com.au">crikey.com.au</a> • 2016 Good Design Awards: <a href="http://artsaccess.com.au">artsaccess.com.au</a> • 2016 Good Design Awards: <a href="http://smartraveller.gov.au">smartraveller.gov.au</a> • 2016 Webby Awards Nominee: <a href="http://smartraveller.gov.au">smartraveller.gov.au</a> • 2015 Good Design Awards: <a href="http://reusehq.keepcup.com/">KeepCup Reuse HQ</a></p>
+
+			
+			
+	
+			
+			<div id="left">
+				Typeset in <span class="serif">Minotaur Regular</span> and <bold>Arial</bold>.
+    		</div>
+			<div id="right">
+				Cobbled together in HTML, CSS and found JavaScript
+    		</div>
+			<div class="clear"></div>
+			
+		</div>
+
+	</body>
+</html>
